@@ -20,6 +20,59 @@
     </nav>
     <h1>Puerto Rico Sign Language</h1>
 </header>
+<section class="dropdown-section">
+    <div class="dropdown">
+        <button class="dropbtn">Familia</button>
+        <div class="dropdown-content">
+            <a href="#" data-word="mama">Mamá</a>
+            <a href="#" data-word="papa">Papá</a>
+            <a href="#" data-word="abuela">Abuela</a>
+            <a href="#" data-word="hija">Hija</a>
+            <a href="#" data-word="hijo">Hijo</a>
+            <a href="#" data-word="bebe">Bebe</a>
+            <a href="#" data-word="hermana">Hermana</a>
+            <a href="#" data-word="persona">Persona</a>
+            <a href="#" data-word="nombre">Nombre</a>
+            <a href="#" data-word="individual">Individual</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Pueblos</button>
+        <div class="dropdown-content">
+            <a href="#" data-word="bayamon">Bayamon</a>
+            <a href="#" data-word="caguas">Caguas</a>
+            <a href="#" data-word="carolina">Carolina</a>
+            <a href="#" data-word="mayaguez">Mayagüez</a>
+            <a href="#" data-word="ponce">Ponce</a>
+            <a href="#" data-word="san_juan">San Juan</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Emociones</button>
+        <div class="dropdown-content">
+            <a href="#" data-word="amor">Amor</a>
+            <a href="#" data-word="por_favor">Por Favor</a>
+            <a href="#" data-word="perdon">Perdón</a>
+            <a href="#" data-word="dolor">Dolor</a>
+            <a href="#" data-word="gracias">Gracias</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Comida</button>
+        <div class="dropdown-content">
+            <a href="#" data-word="arroz">Arroz</a>
+            <a href="#" data-word="habichuela">Habichuelas</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Ocupación</button>
+        <div class="dropdown-content">
+            <a href="#" data-word="policia">Policia</a>
+            <a href="#" data-word="interprete">Interprete</a>
+        </div>
+    </div>
+    <!-- Add more dropdowns for other categories as needed -->
+</section>
 <section class="centered-section">
     <h2>Search GIFs</h2>
     <form id="gifSearchForm">
@@ -31,54 +84,77 @@
         <div id="loader" class="loader" style="display: none;"></div>
     </div>
 </section>
-<script>
-    document.getElementById('gifSearchForm').addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent form from submitting the traditional way
 
-        const searchTermInput = document.getElementById('searchTerm');
-        const searchTerm = searchTermInput.value.toLowerCase().trim();
+<script>
+    // Function to load the GIF based on a given search term
+    function loadGif(searchTerm) {
         const resultDiv = document.getElementById('result');
 
-        // Basic validation
+        // Basic validation (adjust as needed)
         if (!searchTerm || searchTerm.length > 20) {
             resultDiv.innerHTML = '<p class="alert">Search term is required and must be less than 20 characters.</p>';
             return;
         }
 
-        // Create a container to hold the search result text
+        // Create a container to hold the result text
         const container = document.createElement('div');
-        container.innerHTML = `<h3>Your word is ${searchTerm}</h3>`;
+        if (searchTerm === 'san_juan') {
 
-        // Display the loader icon before image loads
-        resultDiv.innerHTML = ''; // Clear the old result
+            container.innerHTML = `<h3>Your word is San Juan</h3>`;
+        } else {
+            container.innerHTML = `<h3>Your word is ${searchTerm}</h3>`;
+        }
+
+        // Clear any previous result and show the loader
+        resultDiv.innerHTML = '';
         const loader = document.createElement('div');
         loader.className = 'loader';
         resultDiv.appendChild(loader);
 
-        // Create an image element and set its src attribute
+        // Create an image element and start loading the GIF
         const img = new Image();
         img.src = `gifs/${searchTerm}.gif`;
 
         img.onload = function () {
-            // Remove the loader
+            // Remove the loader once the image has loaded successfully
             if (resultDiv.contains(loader)) {
                 resultDiv.removeChild(loader);
             }
-            // Append the image to the container
             container.appendChild(img);
             resultDiv.appendChild(container);
         };
 
-        // Handle image load error
         img.onerror = function () {
             if (resultDiv.contains(loader)) {
                 resultDiv.removeChild(loader);
             }
             container.innerHTML += `<p>Oops! It looks like we don't have the image yet!</p>
-                                <p>Here's a picture of a puppy in the meantime:</p>
-                                <img src="https://placedog.net/500" alt="A cute puppy">`;
+                                  <p>Here's a picture of a puppy in the meantime:</p>
+                                  <img src="https://placedog.net/500" alt="A cute puppy">`;
             resultDiv.appendChild(container);
         };
+    }
+
+    // Handle search form submission
+    document.getElementById('gifSearchForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const searchTermInput = document.getElementById('searchTerm');
+        const searchTerm = searchTermInput.value.toLowerCase().trim();
+        loadGif(searchTerm);
+    });
+
+    // Attach click handlers to dropdown links
+    document.querySelectorAll('.dropdown-content a').forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            const word = this.getAttribute('data-word');
+
+            // If you want, you could update the search field as well:
+            document.getElementById('searchTerm').value = word;
+
+            // Load the gif for the clicked dropdown item
+            loadGif(word);
+        });
     });
 </script>
 </body>

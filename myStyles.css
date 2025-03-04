@@ -43,7 +43,7 @@ header {
 }
 
 .centered-section {
-    max-width: 600px; /* or whatever maximum width you prefer */
+    max-width: 800px; /* or whatever maximum width you prefer */
     margin: 0 auto;   /* centers the container horizontally */
     text-align: center; /* centers the text inside */
 }
@@ -90,6 +90,58 @@ header h1 {
 form#gifSearchForm {
     margin: 1rem 0;
 }
+/* Dropdown container */
+.dropdown-section {
+    margin: 20px auto;
+    text-align: center;
+
+}
+
+/* Style the dropdown button */
+.dropbtn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Container needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu when hovering over the dropdown */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 
 form#gifSearchForm input[type="text"] {
     border: 1px solid #ccc;
@@ -127,7 +179,8 @@ h3 {
 /* Images in the Result */
 #result img {
     max-width: 100%;
-    height: auto;
+    height: 28rem;
+    width: auto;
     display: block;
     margin: 1rem auto;
 }
