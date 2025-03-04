@@ -156,6 +156,56 @@
             loadGif(word);
         });
     });
+
+    // Wait until the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all the dropdown elements
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        // Add click event listeners to each dropdown's button and its links
+        dropdowns.forEach(function(dropdown) {
+            const dropbtn = dropdown.querySelector('.dropbtn');
+            const dropdownContent = dropdown.querySelector('.dropdown-content');
+
+            // Toggle dropdown content when the button is clicked
+            dropbtn.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent event from bubbling up to document
+                // Toggle the display style
+                if (dropdownContent.style.display === 'block') {
+                    dropdownContent.style.display = 'none';
+                } else {
+                    // Optionally, close any other open dropdowns before showing this one
+                    closeAllDropdowns();
+                    dropdownContent.style.display = 'block';
+                }
+            });
+
+            // Hide the dropdown when one of its items is clicked
+            const links = dropdownContent.querySelectorAll('a');
+            links.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    // Here you would handle the selected word if needed (e.g., load a GIF)
+
+                    // Hide the dropdown list
+                    dropdownContent.style.display = 'none';
+                });
+            });
+        });
+
+        // Close any open dropdowns when clicking outside
+        document.addEventListener('click', function() {
+            closeAllDropdowns();
+        });
+
+        // Function to close all dropdown menus
+        function closeAllDropdowns() {
+            dropdowns.forEach(function(dropdown) {
+                const content = dropdown.querySelector('.dropdown-content');
+                content.style.display = 'none';
+            });
+        }
+    });
 </script>
 </body>
 </html>
