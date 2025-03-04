@@ -3,6 +3,7 @@ body {
     font-family: sans-serif;
     padding: 2rem;
     background-color: #f4f4f4;
+    overflow-x: hidden;
     margin: 0;
 }
 
@@ -14,9 +15,9 @@ body {
 /* Header Styles */
 header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    gap: 1rem;
     background-color: #972c3a;
     color: white;
     padding: 1rem;
@@ -106,6 +107,7 @@ form#gifSearchForm {
     border: none;
     cursor: pointer;
     margin-right: 10px;
+    margin-top: 10px;
 }
 
 /* Container needed to position the dropdown content */
@@ -147,7 +149,7 @@ form#gifSearchForm input[type="text"] {
     border: 1px solid #ccc;
     padding: 0.5rem;
     border-radius: 4px;
-    width: 16rem;  /* matches Tailwind w-64, which is 16rem */
+    width: 10rem;  /* matches Tailwind w-64, which is 16rem */
 }
 
 form#gifSearchForm button {
@@ -179,7 +181,6 @@ h3 {
 /* Images in the Result */
 #result img {
     max-width: 100%;
-    height: 28rem;
     width: auto;
     display: block;
     margin: 1rem auto;
