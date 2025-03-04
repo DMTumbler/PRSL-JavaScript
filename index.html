@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign Language Dictionary</title>
+    <link rel="stylesheet" href="myStyles.css">
+</head>
+<body>
+<header>
+    <a href="https://www.sagrado.edu">
+        <img src="sagrado-blanco.png" alt="Sagrado Logo">
+    </a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="https://www.sagrado.edu">Meet Sagrado</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </nav>
+    <h1>Puerto Rico Sign Language</h1>
+</header>
+<section class="centered-section">
+    <h2>Search GIFs</h2>
+    <form id="gifSearchForm">
+        <label for="searchTerm"></label>
+        <input type="text" id="searchTerm" name="searchTerm" placeholder="Enter a search term..." autofocus>
+        <button type="submit">Search</button>
+    </form>
+    <div id="result"></div>
+</section>
+<script>
+    document.getElementById('gifSearchForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form from submitting the traditional way
+
+        const searchTermInput = document.getElementById('searchTerm');
+        const searchTerm = searchTermInput.value.toLowerCase().trim();
+        const resultDiv = document.getElementById('result');
+
+        // Basic validation
+        if (!searchTerm || searchTerm.length > 20) {
+            resultDiv.innerHTML = '<p class="alert">Search term is required and must be less than 20 characters.</p>';
+            return;
+        }
+
+        // Create an image element and set its src attribute
+        const img = new Image();
+        img.src = `gifs/${searchTerm}.gif`;
+
+        // Create a container to hold the search result text
+        const container = document.createElement('div');
+        container.innerHTML = `<h3>Your word is ${searchTerm}</h3>`;
+
+        // Clear the previous result
+        resultDiv.innerHTML = '';
+
+        // Handle successful image load
+        img.onload = function () {
+            container.appendChild(img);
+            resultDiv.appendChild(container);
+        };
+
+        // Handle image load error (i.e., file does not exist)
+        img.onerror = function () {
+            container.innerHTML += `<p>Oops! It looks like we don't have the image yet!</p>
+                                <p>Here's a picture of a puppy in the meantime:</p>
+                                <img src="https://placedog.net/500" alt="A cute puppy">`;
+            resultDiv.appendChild(container);
+        };
+    });
+</script>
+</body>
+</html>

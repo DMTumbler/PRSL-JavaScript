@@ -1,0 +1,116 @@
+/* Global Styles */
+body {
+    font-family: sans-serif;
+    padding: 2rem;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+/* Alert Message */
+.alert {
+    color: #b00020;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+    background-color: #972c3a;
+    color: white;
+    padding: 1rem;
+    /* Override body padding */
+    margin-left: -2rem;
+    margin-right: -2rem;
+    margin-top: -2rem;
+}
+.centered-section {
+    max-width: 600px; /* or whatever maximum width you prefer */
+    margin: 0 auto;   /* centers the container horizontally */
+    text-align: center; /* centers the text inside */
+}
+/* Navigation */
+nav {
+    font-size: 1.25rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 0.75rem; /* roughly equal spacing between items */
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: 500;
+    color: white;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Header Logo */
+header a img {
+    height: 4rem; /* equivalent to Tailwind h-16 */
+    vertical-align: top;
+}
+
+/* Header Title */
+header h1 {
+    font-size: 1.25rem;
+}
+
+/* Form Styles */
+form#gifSearchForm {
+    margin: 1rem 0;
+}
+
+form#gifSearchForm input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 4px;
+    width: 16rem;  /* matches Tailwind w-64, which is 16rem */
+}
+
+form#gifSearchForm button {
+    background-color: #3b82f6; /* blue-500 */
+    color: white;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    margin-left: 0.5rem; /* ml-2 */
+    cursor: pointer;
+}
+
+/* Result Container */
+#result {
+    margin-top: 1rem;
+}
+
+/* Headings */
+h2 {
+    font-size: 2rem; /* substitute for text-4xl */
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.5rem; /* substitute for text-3xl */
+    margin-top: 1rem;
+}
+
+/* Images in the Result */
+#result img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+}
