@@ -27,7 +27,9 @@
         <input type="text" id="searchTerm" name="searchTerm" placeholder="Enter a search term..." autofocus>
         <button type="submit">Search</button>
     </form>
-    <div id="result"></div>
+    <div id="result">
+        <div id="loader" class="loader" style="display: none;"></div>
+    </div>
 </section>
 <script>
     document.getElementById('gifSearchForm').addEventListener('submit', function (event) {
@@ -43,25 +45,35 @@
             return;
         }
 
-        // Create an image element and set its src attribute
-        const img = new Image();
-        img.src = `gifs/${searchTerm}.gif`;
-
         // Create a container to hold the search result text
         const container = document.createElement('div');
         container.innerHTML = `<h3>Your word is ${searchTerm}</h3>`;
 
-        // Clear the previous result
-        resultDiv.innerHTML = '';
+        // Display the loader icon before image loads
+        resultDiv.innerHTML = ''; // Clear the old result
+        const loader = document.createElement('div');
+        loader.className = 'loader';
+        resultDiv.appendChild(loader);
 
-        // Handle successful image load
+        // Create an image element and set its src attribute
+        const img = new Image();
+        img.src = `gifs/${searchTerm}.gif`;
+
         img.onload = function () {
+            // Remove the loader
+            if (resultDiv.contains(loader)) {
+                resultDiv.removeChild(loader);
+            }
+            // Append the image to the container
             container.appendChild(img);
             resultDiv.appendChild(container);
         };
 
-        // Handle image load error (i.e., file does not exist)
+        // Handle image load error
         img.onerror = function () {
+            if (resultDiv.contains(loader)) {
+                resultDiv.removeChild(loader);
+            }
             container.innerHTML += `<p>Oops! It looks like we don't have the image yet!</p>
                                 <p>Here's a picture of a puppy in the meantime:</p>
                                 <img src="https://placedog.net/500" alt="A cute puppy">`;
