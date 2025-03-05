@@ -234,13 +234,15 @@
                 voiceBtn.textContent = '🎤';
 
                 // Sanitize the search term: convert to lowercase, remove accents, replace spaces with underscores
-                const searchTerm = searchInput.value.toLowerCase().trim();
-                const sanitizedSearchTerm = searchTerm.normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, '') // Remove combining diacritical marks
-                    .replace(/\s+/g, '_');           // Replace spaces with underscores
+                setTimeout(function (){
+                    const searchTerm = searchInput.value.toLowerCase().trim();
+                    const sanitizedSearchTerm = searchTerm.normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '') // Remove combining diacritical marks
+                        .replace(/\s+/g, '_');           // Replace spaces with underscores
 
-                // Immediately call the function to load the GIF based on the sanitized search term
-                loadGif(sanitizedSearchTerm);
+                    // Immediately call the function to load the GIF based on the sanitized search term
+                    loadGif(sanitizedSearchTerm);
+                }, 200)
             });
 
             recognition.addEventListener('error', function(event) {
