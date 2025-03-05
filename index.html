@@ -78,6 +78,8 @@
     <form id="gifSearchForm">
         <label for="searchTerm"></label>
         <input type="text" id="searchTerm" name="searchTerm" placeholder="Enter a search term..." autofocus>
+        <!-- Microphone button for voice search -->
+        <button type="button" id="voiceSearchBtn" title="Click for voice search">🎤</button>
         <button type="submit">Search</button>
     </form>
     <div id="result">
@@ -140,8 +142,14 @@
         event.preventDefault();
         const searchTermInput = document.getElementById('searchTerm');
         const searchTerm = searchTermInput.value.toLowerCase().trim();
-        loadGif(searchTerm);
-    });
+
+        // Normalize and remove diacritics, then replace spaces with underscores
+        const sanitizedSearchTerm = searchTerm.normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '') // Remove accents (combining diacritical marks)
+            .replace(/\s+/g, '_');           // Replace spaces with underscores
+
+        loadGif(sanitizedSearchTerm);
+    })
 
     // Attach click handlers to dropdown links
     document.querySelectorAll('.dropdown-content a').forEach(function (link) {
@@ -197,7 +205,53 @@
         document.addEventListener('click', function() {
             closeAllDropdowns();
         });
+// Check for browser support of the Web Speech API
+        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
+        if (window.SpeechRecognition) {
+            const recognition = new window.SpeechRecognition();
+            // Set language to Puerto Rico Spanish
+            recognition.lang = 'es-PR';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            const voiceBtn = document.getElementById('voiceSearchBtn');
+            const searchInput = document.getElementById('searchTerm');
+
+            voiceBtn.addEventListener('click', function() {
+                // Start voice recognition
+                recognition.start();
+                voiceBtn.textContent = '🎙️...'; // Visual feedback indicating listening
+            });
+
+            recognition.addEventListener('result', function(event) {
+                // Set the recognized speech in the search input field
+                searchInput.value = event.results[0][0].transcript;
+            });
+
+            recognition.addEventListener('speechend', function() {
+                recognition.stop();
+                voiceBtn.textContent = '🎤';
+
+                // Sanitize the search term: convert to lowercase, remove accents, replace spaces with underscores
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const sanitizedSearchTerm = searchTerm.normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '') // Remove combining diacritical marks
+                    .replace(/\s+/g, '_');           // Replace spaces with underscores
+
+                // Immediately call the function to load the GIF based on the sanitized search term
+                loadGif(sanitizedSearchTerm);
+            });
+
+            recognition.addEventListener('error', function(event) {
+                console.error('Error in speech recognition: ' + event.error);
+                voiceBtn.textContent = '🎤';
+            });
+        } else {
+            // If the browser does not support speech recognition, hide the voice search button
+            document.getElementById('voiceSearchBtn').style.display = 'none';
+            console.warn('Your browser does not support speech recognition.');
+        }
         // Function to close all dropdown menus
         function closeAllDropdowns() {
             dropdowns.forEach(function(dropdown) {
