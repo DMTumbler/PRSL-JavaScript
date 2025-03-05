@@ -57,20 +57,20 @@
             <a href="#" data-word="gracias">Gracias</a>
         </div>
     </div>
-    <!--<div class="dropdown">
+    <div class="dropdown">
         <button class="dropbtn">Comida</button>
         <div class="dropdown-content">
             <a href="#" data-word="arroz">Arroz</a>
             <a href="#" data-word="habichuela">Habichuelas</a>
         </div>
-    </div>-->
-    <!--<div class="dropdown">
+    </div>
+    <div class="dropdown">
         <button class="dropbtn">Ocupación</button>
         <div class="dropdown-content">
             <a href="#" data-word="policia">Policía</a>
             <a href="#" data-word="interprete">Interprete</a>
         </div>
-    </div>-->
+    </div>
     <div class="dropdown">
         <button class="dropbtn">Pronombres</button>
         <div class="dropdown-content">
@@ -107,6 +107,39 @@
             <a href="#" data-word="cambiar">cambiar</a>
         </div>
     </div>
+    <div class="dropdown">
+        <button class="dropbtn">Comunicación</button>
+        <div class="dropdown-content">
+            <a href="#" data-word="hablar">Hablar</a>
+            <a href="#" data-word="interpretar">Interpretar</a>
+            <a href="#" data-word="senas">Señas</a>
+            <a href="#" data-word="telefono">Teléfono</a>
+            <a href="#" data-word="television">Televisión</a>
+            <a href="#" data-word="conversar">Conversar</a>
+            <a href="#" data-word="explicar">Explicar</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Acción Mental</button>
+        <div class="dropdown-content">
+            <a href="#" data-word="me_olvide">Me Olvidé</a>
+            <a href="#" data-word="no_entender">No entender</a>
+            <a href="#" data-word="no_se">No Sé</a>
+            <a href="#" data-word="saber">Saber</a>
+            <a href="#" data-word="idea">Idea</a>
+            <a href="#" data-word="significado">Significado</a>
+            <a href="#" data-word="conflicto">Conflicto</a>
+            <a href="#" data-word="presion">Presión</a>
+            <a href="#" data-word="recordar">Recordar</a>
+            <a href="#" data-word="comparar">Comparar</a>
+            <a href="#" data-word="influenciar">Influenciar</a>
+            <a href="#" data-word="decidir">Decidir</a>
+            <a href="#" data-word="cooperacion">Cooperación</a>
+            <a href="#" data-word="dejalo">Dejalo</a>
+            <a href="#" data-word="discusion">Discusión</a>
+            <a href="#" data-word="junto">Junto</a>
+        </div>
+    </div>
     <!-- Add more dropdowns for other categories as needed -->
 </section>
 <section class="centered-section">
@@ -127,6 +160,23 @@
     // Function to load the GIF based on a given search term
     let isLoading = false;
 
+    function removeUnderscore(searchTerm) {
+        let underscoreIndex = 0;
+        let newString = '';
+        if (searchTerm.includes('_')) {
+            console.log('It has it!')
+            underscoreIndex = searchTerm.indexOf('_');
+            console.log('The position is ' + underscoreIndex)
+        } else {
+            console.log("It doesn't have it")
+        }
+        if (underscoreIndex) {
+            newString = searchTerm.substring(0, underscoreIndex) + " " + searchTerm.substring(underscoreIndex + 1)
+            return newString;
+
+        }
+    }
+
     function loadGif(searchTerm) {
         if (isLoading) {
             return;
@@ -143,16 +193,13 @@
 
         // Create a container to hold the result text
         const container = document.createElement('div');
-        if (searchTerm === 'san_juan') {
-            container.innerHTML = `<h3>Tu palabra es San Juan</h3>`;
-        } else if (searchTerm === 'por_favor') {
-            container.innerHTML = `<h3>Tu frase es por favor</h3>`;
-        } else if (searchTerm === 'no_entender') {
-            container.innerHTML = `<h3>Tu frase es no entender</h3>`;
-        } else if (searchTerm === 'por_que') {
-            container.innerHTML = `<h3>Tu frase es no entender</h3>`;
+
+        let noUnderscoreTerm = removeUnderscore(searchTerm);
+
+        if (searchTerm.includes('_')) {
+            container.innerHTML = `<h3>Tu frase es ${noUnderscoreTerm}</h3>`
         } else {
-            container.innerHTML = `<h3>Tu palabra es ${searchTerm}</h3>`;
+            container.innerHTML = `<h3>Tu palabra es ${searchTerm}</h3>`
         }
 
         // Clear any previous result and show the loader
