@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Puerto Rico Sign Language</title>
+    <title>Lenguaje de Señas de Puerto Rico</title>
     <link rel="stylesheet" href="myStyles.css">
 </head>
 <body>
@@ -13,12 +13,12 @@
     </a>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="https://www.sagrado.edu">Meet Sagrado</a></li>
-            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="https://www.sagrado.edu">Conoce a Sagrado</a></li>
+            <li><a href="about.html">Sobre Nosotros</a></li>
         </ul>
     </nav>
-    <h1>Puerto Rico Sign Language</h1>
+    <h1>Lenguaje de Señas de Puerto Rico</h1>
 </header>
 <section class="dropdown-section">
     <div class="dropdown">
@@ -74,13 +74,13 @@
     <!-- Add more dropdowns for other categories as needed -->
 </section>
 <section class="centered-section">
-    <h2>Search GIFs</h2>
+    <h2>Buscar GIFs</h2>
     <form id="gifSearchForm">
         <label for="searchTerm"></label>
-        <input type="text" id="searchTerm" name="searchTerm" placeholder="Enter a search term..." autofocus>
+        <input type="text" id="searchTerm" name="searchTerm" placeholder="Termino a buscar" autofocus>
         <!-- Microphone button for voice search -->
-        <button type="button" id="voiceSearchBtn" title="Click for voice search">🎤</button>
-        <button type="submit">Search</button>
+        <button type="button" id="voiceSearchBtn" title="Haga click para búsqueda de voz">🎤</button>
+        <button type="submit">Búsqueda</button>
     </form>
     <div id="result">
         <div id="loader" class="loader" style="display: none;"></div>
@@ -90,6 +90,7 @@
 <script>
     // Function to load the GIF based on a given search term
     let isLoading = false;
+
     function loadGif(searchTerm) {
         if (isLoading) {
             return;
@@ -99,7 +100,7 @@
 
         // Basic validation (adjust as needed)
         if (!searchTerm || searchTerm.length > 20) {
-            resultDiv.innerHTML = '<p class="alert">Search term is required and must be less than 20 characters.</p>';
+            resultDiv.innerHTML = '<p class="alert">Un término de búsqueda es necesario y debe ser menos de 20 caracteres.</p>';
             isLoading = false;
             return;
         }
@@ -107,10 +108,15 @@
         // Create a container to hold the result text
         const container = document.createElement('div');
         if (searchTerm === 'san_juan') {
-
-            container.innerHTML = `<h3>Your word is San Juan</h3>`;
+            container.innerHTML = `<h3>Tu palabra es San Juan</h3>`;
+        } else if (searchTerm === 'por_favor') {
+            container.innerHTML = `<h3>Tu frase es por favor</h3>`;
+        } else if (searchTerm === 'no_entender') {
+            container.innerHTML = `<h3>Tu frase es no entender</h3>`;
+        } else if (searchTerm === 'por_que') {
+            container.innerHTML = `<h3>Tu frase es no entender</h3>`;
         } else {
-            container.innerHTML = `<h3>Your word is ${searchTerm}</h3>`;
+            container.innerHTML = `<h3>Tu palabra es ${searchTerm}</h3>`;
         }
 
         // Clear any previous result and show the loader
@@ -137,9 +143,9 @@
             if (resultDiv.contains(loader)) {
                 resultDiv.removeChild(loader);
             }
-            container.innerHTML += `<p>Oops! It looks like we don't have the image yet!</p>
-                                  <p>Here's a picture of a puppy in the meantime:</p>
-                                  <img src="https://placedog.net/500" alt="A cute puppy">`;
+            container.innerHTML += `<p>¡Oops! ¡Al parecer aún no tenemos ese GIF!</p>
+                                  <p>Mientras tanto, mira que lindo el perrito:</p>
+                                  <img src="https://placedog.net/500" alt="Foto de perrito">`;
             resultDiv.appendChild(container);
             isLoading = false;
         };
@@ -174,17 +180,17 @@
     });
 
     // Wait until the DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Get all the dropdown elements
         const dropdowns = document.querySelectorAll('.dropdown');
 
         // Add click event listeners to each dropdown's button and its links
-        dropdowns.forEach(function(dropdown) {
+        dropdowns.forEach(function (dropdown) {
             const dropbtn = dropdown.querySelector('.dropbtn');
             const dropdownContent = dropdown.querySelector('.dropdown-content');
 
             // Toggle dropdown content when the button is clicked
-            dropbtn.addEventListener('click', function(event) {
+            dropbtn.addEventListener('click', function (event) {
                 event.stopPropagation(); // Prevent event from bubbling up to document
                 // Toggle the display style
                 if (dropdownContent.style.display === 'block') {
@@ -198,8 +204,8 @@
 
             // Hide the dropdown when one of its items is clicked
             const links = dropdownContent.querySelectorAll('a');
-            links.forEach(function(link) {
-                link.addEventListener('click', function(event) {
+            links.forEach(function (link) {
+                link.addEventListener('click', function (event) {
                     event.preventDefault();
                     // Here you would handle the selected word if needed (e.g., load a GIF)
 
@@ -210,7 +216,7 @@
         });
 
         // Close any open dropdowns when clicking outside
-        document.addEventListener('click', function() {
+        document.addEventListener('click', function () {
             closeAllDropdowns();
         });
 // Check for browser support of the Web Speech API
@@ -226,23 +232,23 @@
             const voiceBtn = document.getElementById('voiceSearchBtn');
             const searchInput = document.getElementById('searchTerm');
 
-            voiceBtn.addEventListener('click', function() {
+            voiceBtn.addEventListener('click', function () {
                 // Start voice recognition
                 recognition.start();
                 voiceBtn.textContent = '🎙️...'; // Visual feedback indicating listening
             });
 
-            recognition.addEventListener('result', function(event) {
+            recognition.addEventListener('result', function (event) {
                 // Set the recognized speech in the search input field
                 searchInput.value = event.results[0][0].transcript;
             });
 
-            recognition.addEventListener('speechend', function() {
+            recognition.addEventListener('speechend', function () {
                 recognition.stop();
                 voiceBtn.textContent = '🎤';
 
                 // Sanitize the search term: convert to lowercase, remove accents, replace spaces with underscores
-                setTimeout(function (){
+                setTimeout(function () {
                     const searchTerm = searchInput.value.toLowerCase().trim();
                     const sanitizedSearchTerm = searchTerm.normalize('NFD')
                         .replace(/[\u0300-\u036f]/g, '') // Remove combining diacritical marks
@@ -253,7 +259,7 @@
                 }, 200)
             });
 
-            recognition.addEventListener('error', function(event) {
+            recognition.addEventListener('error', function (event) {
                 console.error('Error in speech recognition: ' + event.error);
                 voiceBtn.textContent = '🎤';
             });
@@ -262,9 +268,10 @@
             document.getElementById('voiceSearchBtn').style.display = 'none';
             console.warn('Your browser does not support speech recognition.');
         }
+
         // Function to close all dropdown menus
         function closeAllDropdowns() {
-            dropdowns.forEach(function(dropdown) {
+            dropdowns.forEach(function (dropdown) {
                 const content = dropdown.querySelector('.dropdown-content');
                 content.style.display = 'none';
             });
