@@ -29,7 +29,7 @@
             <a href="#" data-word="abuela">Abuela</a>
             <a href="#" data-word="hija">Hija</a>
             <a href="#" data-word="hijo">Hijo</a>
-            <a href="#" data-word="bebe">Bebe</a>
+            <a href="#" data-word="bebe">Bebé</a>
             <a href="#" data-word="hermana">Hermana</a>
             <a href="#" data-word="persona">Persona</a>
             <a href="#" data-word="nombre">Nombre</a>
@@ -89,12 +89,18 @@
 
 <script>
     // Function to load the GIF based on a given search term
+    let isLoading = false;
     function loadGif(searchTerm) {
+        if (isLoading) {
+            return;
+        }
+        isLoading = true;
         const resultDiv = document.getElementById('result');
 
         // Basic validation (adjust as needed)
         if (!searchTerm || searchTerm.length > 20) {
             resultDiv.innerHTML = '<p class="alert">Search term is required and must be less than 20 characters.</p>';
+            isLoading = false;
             return;
         }
 
@@ -124,6 +130,7 @@
             }
             container.appendChild(img);
             resultDiv.appendChild(container);
+            isLoading = false;
         };
 
         img.onerror = function () {
@@ -134,6 +141,7 @@
                                   <p>Here's a picture of a puppy in the meantime:</p>
                                   <img src="https://placedog.net/500" alt="A cute puppy">`;
             resultDiv.appendChild(container);
+            isLoading = false;
         };
     }
 
