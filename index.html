@@ -57,18 +57,54 @@
             <a href="#" data-word="gracias">Gracias</a>
         </div>
     </div>
-    <div class="dropdown">
+    <!--<div class="dropdown">
         <button class="dropbtn">Comida</button>
         <div class="dropdown-content">
             <a href="#" data-word="arroz">Arroz</a>
             <a href="#" data-word="habichuela">Habichuelas</a>
         </div>
-    </div>
-    <div class="dropdown">
+    </div>-->
+    <!--<div class="dropdown">
         <button class="dropbtn">Ocupación</button>
         <div class="dropdown-content">
             <a href="#" data-word="policia">Policía</a>
             <a href="#" data-word="interprete">Interprete</a>
+        </div>
+    </div>-->
+    <div class="dropdown">
+        <button class="dropbtn">Pronombres</button>
+        <div class="dropdown-content">
+            <a href="#" data-word="yo">Yo</a>
+            <a href="#" data-word="tu">Tu</a>
+            <a href="#" data-word="nosotros">Nosotros</a>
+            <a href="#" data-word="ella">Ella</a>
+            <a href="#" data-word="ellos">Ellos</a>
+            <a href="#" data-word="ellas">Ellas</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Interrogantes</button>
+        <div class="dropdown-content">
+            <a href="#" data-word="si">Sí</a>
+            <a href="#" data-word="no">No</a>
+            <a href="#" data-word="cuanto">Cuánto</a>
+            <a href="#" data-word="donde">Dónde</a>
+            <a href="#" data-word="que">Qué</a>
+            <a href="#" data-word="quien">Quién</a>
+            <a href="#" data-word="precio">Precio</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Acciones</button>
+        <div class="dropdown-content">
+            <a href="#" data-word="ayudar">Ayudar</a>
+            <a href="#" data-word="ayudame">Ayudame</a>
+            <a href="#" data-word="dormir">Dormir</a>
+            <a href="#" data-word="esperar">Esperar</a>
+            <a href="#" data-word="mirar">Mirar</a>
+            <a href="#" data-word="defender">Defender</a>
+            <a href="#" data-word="descansar">Descansar</a>
+            <a href="#" data-word="cambiar">cambiar</a>
         </div>
     </div>
     <!-- Add more dropdowns for other categories as needed -->
@@ -184,7 +220,7 @@
         // Get all the dropdown elements
         const dropdowns = document.querySelectorAll('.dropdown');
 
-        // Add click event listeners to each dropdown's button and its links
+        // Add click event listeners to each dropdowns button and its links
         dropdowns.forEach(function (dropdown) {
             const dropbtn = dropdown.querySelector('.dropbtn');
             const dropdownContent = dropdown.querySelector('.dropdown-content');
