@@ -67,7 +67,7 @@
     <div class="dropdown">
         <button class="dropbtn">Ocupación</button>
         <div class="dropdown-content">
-            <a href="#" data-word="policia">Policia</a>
+            <a href="#" data-word="policia">Policía</a>
             <a href="#" data-word="interprete">Interprete</a>
         </div>
     </div>
@@ -206,40 +206,51 @@
             closeAllDropdowns();
         });
 // Check for browser support of the Web Speech API
+        // Global variable to store the latest recognized term
+        var recognizedTerm = '';
+
+// Check for browser support of the Web Speech API
         window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
         if (window.SpeechRecognition) {
-            const recognition = new window.SpeechRecognition();
-            // Set language to Puerto Rico Spanish
-            recognition.lang = 'es-PR';
+            var recognition = new window.SpeechRecognition();
+            recognition.lang = 'es-PR'; // Puerto Rico Spanish
             recognition.interimResults = false;
             recognition.maxAlternatives = 1;
 
-            const voiceBtn = document.getElementById('voiceSearchBtn');
-            const searchInput = document.getElementById('searchTerm');
+            var voiceBtn = document.getElementById('voiceSearchBtn');
+            var searchInput = document.getElementById('searchTerm');
 
             voiceBtn.addEventListener('click', function() {
-                // Start voice recognition
+                // Start voice recognition and reset recognizedTerm
+                recognizedTerm = '';
                 recognition.start();
-                voiceBtn.textContent = '🎙️...'; // Visual feedback indicating listening
+                voiceBtn.textContent = '🎙️...';
             });
 
             recognition.addEventListener('result', function(event) {
-                // Set the recognized speech in the search input field
-                searchInput.value = event.results[0][0].transcript;
+                // Capture the recognized text in a variable
+                recognizedTerm = event.results[0][0].transcript;
+                searchInput.value = recognizedTerm; // Optionally display in the input field
             });
 
             recognition.addEventListener('speechend', function() {
                 recognition.stop();
                 voiceBtn.textContent = '🎤';
 
-                // Sanitize the search term: convert to lowercase, remove accents, replace spaces with underscores
-                const searchTerm = searchInput.value.toLowerCase().trim();
-                const sanitizedSearchTerm = searchTerm.normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, '') // Remove combining diacritical marks
+                // Process recognizedTerm instead of reading from the input element
+                var searchTerm = recognizedTerm.toLowerCase().trim();
+                var sanitizedSearchTerm = searchTerm.normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '') // Remove accents
                     .replace(/\s+/g, '_');           // Replace spaces with underscores
 
-                // Immediately call the function to load the GIF based on the sanitized search term
+                // Assuming resultDiv is defined; use your validation logic here
+                if (!sanitizedSearchTerm || sanitizedSearchTerm.length > 20) {
+                    resultDiv.innerHTML = '<p class="alert">Search term is required and must be less than 20 characters.</p>';
+                    return;
+                }
+
+                // Immediately call loadGif with the current sanitized term
                 loadGif(sanitizedSearchTerm);
             });
 
