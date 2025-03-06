@@ -72,13 +72,13 @@ nav ul {
 nav ul li {
     text-align: center;
     margin: 1rem 0.75rem; /* roughly equal spacing between items */
+    padding: 0.5rem 0.75rem; /* added padding */
 }
 
 nav ul li a {
     text-decoration: none;
     font-weight: 500;
     color: white;
-    padding: 0.5rem 1rem; /* added padding */
 }
 
 nav ul li a:hover {
