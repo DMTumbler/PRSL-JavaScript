@@ -71,17 +71,18 @@ nav ul {
 
 nav ul li {
     text-align: center;
-    margin: 1rem 0.45rem; /* roughly equal spacing between items */
+    margin: 1rem 0.75rem; /* roughly equal spacing between items */
 }
 
 nav ul li a {
     text-decoration: none;
     font-weight: 500;
     color: white;
+    padding: 0.5rem 1rem; /* added padding */
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+    border-bottom: 2px solid white;
 }
 
 /* Header Logo */
