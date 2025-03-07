@@ -144,6 +144,7 @@ form#gifSearchForm {
 
 /* Style the dropdown button */
 .dropbtn {
+    border-radius: 2px;
     animation: fadeInDown 1s ease-in-out forwards;
     transition: background-color 0.3s ease;
     background-color: #3498db;
@@ -168,6 +169,7 @@ form#gifSearchForm {
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
+    border-radius: 3px;
     animation: fadeInDown 0.2s ease-in-out forwards;
     display: none;
     position: absolute;
