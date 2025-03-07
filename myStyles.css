@@ -1,5 +1,11 @@
 /* Global Styles */
+html, body {
+   height: 100%;
+    margin: 0;
+}
 body {
+    display: flex;
+    flex-direction: column;
     font-family: sans-serif;
     padding: 2rem;
     background-color: #f4f4f4;
@@ -244,6 +250,45 @@ h3 {
     margin: 1rem auto;
 }
 
+#code {
+    margin-top: auto;
+    background-color: #f1f1f1; /* Optional: Add some background color */
+    text-align: center; /* Optional: Center the text */
+    padding: 10px 0; /* Optional: Add some padding for spacing */
+}
+
+#team {
+    animation: fadeInDown 1.5s ease-in-out forwards;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1.5rem;
+    margin: 2rem 1rem;
+    place-items: center;
+}
+
+figure {
+    margin: 0;
+    text-align: center;
+
+}
+
+@media (max-width: 768px) {
+    #team {
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+        grid-gap: 1.5rem;
+    }
+
+}
+
+#team img {
+    border-radius: 20px;
+    width: 300px;
+    max-width: 100%;
+    display: block;
+}
+
 @media (max-width: 360px) {
     form#gifSearchForm input[type="text"] {
         width: 7rem; /* matches Tailwind w-64, which is 16rem */
@@ -257,9 +302,16 @@ h3 {
 
     #result img {
         width: 700px;
+        max-width: 100%;
     }
 
     form#gifSearchForm input[type="text"] {
         width: 16rem; /* matches Tailwind w-64, which is 16rem */
+    }
+}
+@media only screen and (max-width: 768px) {
+    #content {
+        display: flex;
+        flex-direction: column;
     }
 }
