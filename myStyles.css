@@ -215,6 +215,15 @@ form#gifSearchForm button {
 }
 
 /* Headings */
+h1 a {
+    border-bottom: solid transparent;
+    transition: border-bottom 0.3s ease;
+    text-decoration: none;
+    color: white;
+}
+h1 a:hover {
+    border-bottom: solid white;
+}
 h2 {
     animation: fadeInDown 1.5s ease-in-out forwards;
     font-size: 2rem; /* substitute for text-4xl */
