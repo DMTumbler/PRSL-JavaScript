@@ -156,11 +156,8 @@ form#gifSearchForm {
 }
 /* Container needed to position the dropdown content */
 .dropdown {
-    opacity: 0;
-    animation: fadeInDown 1s ease-in-out forwards;
     position: relative;
     display: inline-block;
-    z-index: 1;
 }
 
 /* Dropdown content (hidden by default) */
@@ -171,6 +168,7 @@ form#gifSearchForm {
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 /* Links inside the dropdown */
