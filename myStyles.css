@@ -12,6 +12,33 @@ body {
     color: #b00020;
 }
 
+p {
+    animation: fadeInLeft 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
 /* Header Styles */
 header {
     display: flex;
@@ -105,11 +132,12 @@ form#gifSearchForm {
 .dropdown-section {
     margin: 20px auto;
     text-align: center;
-
 }
 
 /* Style the dropdown button */
 .dropbtn {
+    animation: fadeInDown 1s ease-in-out forwards;
+    transition: background-color 0.3s ease;
     background-color: #3498db;
     color: white;
     padding: 10px;
@@ -120,20 +148,27 @@ form#gifSearchForm {
     margin-top: 10px;
 }
 
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #2980b9;
+}
 /* Container needed to position the dropdown content */
 .dropdown {
+    opacity: 0;
+    animation: fadeInDown 1s ease-in-out forwards;
     position: relative;
     display: inline-block;
+    z-index: 1;
 }
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
+    animation: fadeInDown 0.2s ease-in-out forwards;
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    z-index: 1;
 }
 
 /* Links inside the dropdown */
@@ -156,6 +191,7 @@ form#gifSearchForm {
 
 
 form#gifSearchForm input[type="text"] {
+    animation: fadeInDown 1s ease-in-out forwards;
     border: 1px solid #ccc;
     padding: 0.5rem;
     border-radius: 4px;
@@ -163,6 +199,7 @@ form#gifSearchForm input[type="text"] {
 }
 
 form#gifSearchForm button {
+    animation: fadeInDown 1s ease-in-out forwards;
     background-color: #3b82f6; /* blue-500 */
     color: white;
     padding: 0.5rem;
@@ -179,6 +216,7 @@ form#gifSearchForm button {
 
 /* Headings */
 h2 {
+    animation: fadeInDown 1.5s ease-in-out forwards;
     font-size: 2rem; /* substitute for text-4xl */
     margin-bottom: 1rem;
 }
@@ -190,6 +228,7 @@ h3 {
 
 /* Images in the Result */
 #result img {
+    border-radius: 20px;
     max-width: 100%;
     width: auto;
     display: block;
