@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aprendiendo Código</title>
+    <link rel="stylesheet" href="myStyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <style>
+        #output {
+            padding: 10px;
+            margin-top: 10px;
+            min-height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a href="https://www.sagrado.edu">
+        <img src="sagrado-blanco.png" alt="Sagrado Logo">
+    </a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="https://www.sagrado.edu">Conoce a Sagrado</a></li>
+            <li><a href="about.html">Sobre Nosotros</a></li>
+        </ul>
+    </nav>
+    <h1><a href="importance.html">Lenguaje de Señas de Puerto Rico</a></h1>
+</header>
+
+<main>
+    <div id="sum" style="margin-top: 10px; display: flex; flex-direction: column; align-items: center; gap: 10px">
+        <h2>Ejemplo de Código JavaScript para Sumar</h2>
+        <label for="a">Número 1: </label>
+        <input type="number" id="a" value="1">
+        <label for="b">Número 2: </label>
+        <input type="number" id="b" value="2">
+        <button id="sumButton">Sumar</button>
+        <p id="output"></p>
+        <pre>
+<code class="language-javascript">
+// Función para sumar dos números
+function sumar(a, b) {
+    return a + b;
+}
+
+// Se agregará el evento para el botón después de cargar el DOM
+document.getElementById('sumButton').addEventListener('click', function() {
+    // Obtiene los valores de los inputs y los convierte a número
+    const a = Number(document.getElementById('a').value);
+    const b = Number(document.getElementById('b').value);
+
+    // Usa la función sumar para calcular la suma
+    const resultado = sumar(a, b);
+
+    // Muestra el resultado en el párrafo con id "output"
+    document.getElementById('output').textContent = 'Resultado: ' + resultado;
+});
+</code>
+        </pre>
+    </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script>
+    // Inicializa el resaltado de sintaxis
+    hljs.highlightAll();
+
+    // Función para sumar dos números
+    function sumar(a, b) {
+        return a + b;
+    }
+
+    // Asocia un evento clic al botón para usar la función sumar
+    document.getElementById('sumButton').addEventListener('click', function () {
+        // Obtiene los valores de los inputs y los convierte a número
+        const a = Number(document.getElementById('a').value);
+        const b = Number(document.getElementById('b').value);
+
+        // Usa la función sumar para calcular la suma
+        const resultado = sumar(a, b);
+
+        // Muestra el resultado en el párrafo con ID "output"
+        document.getElementById('output').textContent = 'Resultado: ' + resultado;
+    });
+</script>
+</body>
+</html>
