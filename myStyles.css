@@ -259,7 +259,7 @@ h3 {
     padding: 10px 0; /* Optional: Add some padding for spacing */
 }
 
-#team {
+.team {
     animation: fadeInDown 1.5s ease-in-out forwards;
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -269,7 +269,13 @@ h3 {
     place-items: center;
 }
 
-#team img {
+.team > :last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    text-align: center;
+}
+
+.team img {
     border-radius: 20px;
     width: 300px;
     max-width: 100%;
@@ -286,11 +292,10 @@ h3 {
 figure {
     margin: 0;
     text-align: center;
-
 }
 
 @media (max-width: 768px) {
-    #team {
+    .team {
         grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr;
         grid-gap: 1.5rem;
@@ -298,7 +303,7 @@ figure {
 
 }
 
-#team img {
+.team img {
     border-radius: 20px;
     width: 300px;
     max-width: 100%;
