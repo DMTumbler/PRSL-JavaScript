@@ -51,7 +51,7 @@ header {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    background-color: #972c3a;
+    background-color: #872135;
     color: white;
     padding: 1rem;
     /* Override body padding */
@@ -144,14 +144,15 @@ form#gifSearchForm {
 
 /* Style the dropdown button */
 .dropbtn {
-    border-radius: 2px;
+    border-radius: 10px;
     animation: fadeInDown 1s ease-in-out forwards;
-    transition: background-color 0.3s ease;
-    background-color: #3498db;
+    transition: background-color 0.6s ease;
+    background-color: #872135;
     color: white;
     padding: 10px;
     font-size: 16px;
     border: none;
+    font-weight: bolder;
     cursor: pointer;
     margin-right: 10px;
     margin-top: 10px;
@@ -159,7 +160,8 @@ form#gifSearchForm {
 
 .dropbtn:hover,
 .dropbtn:focus {
-    background-color: #2980b9;
+    background-color: #f2bb4a;
+    color: #626366;
 }
 /* Container needed to position the dropdown content */
 .dropdown {
